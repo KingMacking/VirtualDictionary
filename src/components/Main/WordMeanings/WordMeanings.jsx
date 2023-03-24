@@ -1,4 +1,4 @@
-const WordMeanings = ({meanings}) => {
+const WordMeanings = ({meanings, setWordToSearch}) => {
     return (
         <div className="flex flex-col gap-8">
             {meanings.map(meaning => {
@@ -16,8 +16,20 @@ const WordMeanings = ({meanings}) => {
                                 )
                             })}
                         </ul>
-                        {meaning.synonyms.length > 0 && <p className="text-lg text-grey">Synonyms: <span className="text-vermilion">{meaning.synonyms.join(", ")}</span></p>}
-                        {meaning.antonyms.length > 0 && <p className="text-lg text-grey">Antonyms: <span className="text-vermilion">{meaning.antonyms.join(", ")}</span></p>}
+                        {meaning.synonyms.length > 0 && <div className="text-lg text-grey">
+                            Synonyms:
+                            {meaning.synonyms.map(synonym => {
+                                return <span onClick={() => setWordToSearch(synonym)} className="text-vermilion hover:cursor-pointer hover:underline underline-offset-2 mx-1">{synonym}</span>
+                            })}
+                            </div>
+                        }
+                        {meaning.antonyms.length > 0 && <div className="text-lg text-grey">
+                            Antonyms:
+                            {meaning.antonyms.map(antonym => {
+                                return <span onClick={() => setWordToSearch(antonym)} className="text-vermilion hover:cursor-pointer hover:underline underline-offset-2 mx-1">{antonym}</span>
+                            })}
+                            </div>
+                        }
                     </div>
                 )
             })}

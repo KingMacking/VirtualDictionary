@@ -39,10 +39,10 @@ const Main = () => {
                         <WordTitle word={wordData.word} phonetics={wordData.phonetics} />
                     </header>
                     <main>
-                        <WordMeanings meanings={wordData.meanings} />
+                        <WordMeanings meanings={wordData.meanings} setWordToSearch={setWordToSearch}/>
                     </main>
                     <footer>
-                        <WordSource source={wordData.sourceUrls}/>
+                        <WordSource word={wordData.word} source={wordData.sourceUrls[0].toLowerCase()}/>
                     </footer>
                 </>
             }

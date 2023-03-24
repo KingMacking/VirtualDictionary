@@ -9,10 +9,14 @@ const WordTitle = ({word, phonetics}) => {
             <div className="w-full">
                 <h1 className="w-full py-2 mb-2 text-6xl border-b font-title text-blackDarker dark:text-white border-grey">{word}</h1>
                 {filteredPhonetics.map(phonetic => {
-                    return <p key={phonetic.sourceUrl} className="flex items-center gap-3 mb-1 text-xl text-vermilion font-text">{phonetic.text}<Icon className={`text-sm ${phonetic.text ? "" : "hidden"}`} icon={`${phonetic.license.name === "BY 3.0 US" ? "flagpack:gb-ukm" : "flagpack:us"}`} /></p>
+                    return (
+                        <div key={phonetic.sourceUrl} className="flex gap-4">
+                            <AudioPlayer url={phonetic.audio}/>
+                            <p className="flex items-center gap-3 mb-1 text-xl text-vermilion font-text">{phonetic.text}<Icon className={`text-sm ${phonetic.text ? "" : "hidden"}`} icon={`${phonetic.license.name === "BY 3.0 US" ? "flagpack:gb-ukm" : "flagpack:us"}`} /></p>
+                        </div>
+                    )
                 })}
             </div>
-            <AudioPlayer url={phonetics[0].audio ? phonetics[0].audio : phonetics[1].audio}/>
         </div>
     )
 }
