@@ -42,7 +42,7 @@ const Main = () => {
                 </div>
             : 
                 <>
-                    {nonExistentWord ? <NonExistentWord /> :
+                    {nonExistentWord ? <NonExistentWord setWordToSearch={setWordToSearch} /> :
                     <>
                         <header>
                             <WordTitle word={wordData.word} phonetics={wordData.phonetics} />
