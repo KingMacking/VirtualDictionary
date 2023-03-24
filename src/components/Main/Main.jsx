@@ -18,7 +18,12 @@ const Main = () => {
         const fetchData = async () => {
             await fetcher(`https://api.dictionaryapi.dev/api/v2/entries/en/${wordToSearch}`)
             .then(data => {
-                data.title !== "No Definitions Found" ? setWordData(data[0]) : setNonExistentWord(true)
+                if(data.title !== "No Definitions Found") {
+                    setWordData(data[0]) 
+                    setNonExistentWord(false)
+                } else {
+                    setNonExistentWord(true)
+                }
             })
             .finally(() => {
                 setIsSearching(false)
