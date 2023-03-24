@@ -10,7 +10,6 @@ const WordSearch = ({setWordToSearch}) => {
         } else {
             setWordToSearch(e.target.word.value.toLowerCase())
             setInvalidSearch(false)
-            e.target.word.value = ""
         }
     }
 
