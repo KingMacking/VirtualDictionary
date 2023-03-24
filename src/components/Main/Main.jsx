@@ -1,6 +1,7 @@
 import { Ripples } from "@uiball/loaders"
 import { useEffect, useState } from "react"
 import fetcher from "../../helpers/fetcher"
+import NonExistentWord from "./NonExistentWord/NonExistentWord"
 import WordMeanings from "./WordMeanings/WordMeanings"
 import WordSearch from "./WordSearch/WordSearch"
 import WordSource from "./WordSource/WordSource"
@@ -10,13 +11,14 @@ const Main = () => {
     const [wordData, setWordData] = useState(null)
     const [wordToSearch, setWordToSearch] = useState("welcome")
     const [isSearching, setIsSearching] = useState(true)
+    const [nonExistentWord, setNonExistentWord] = useState(false)
 
     useEffect(() => {
         setIsSearching(true)
         const fetchData = async () => {
             await fetcher(`https://api.dictionaryapi.dev/api/v2/entries/en/${wordToSearch}`)
             .then(data => {
-                setWordData(data[0])
+                data.title !== "No Definitions Found" ? setWordData(data[0]) : setNonExistentWord(true)
             })
             .finally(() => {
                 setIsSearching(false)
@@ -35,15 +37,19 @@ const Main = () => {
                 </div>
             : 
                 <>
-                    <header>
-                        <WordTitle word={wordData.word} phonetics={wordData.phonetics} />
-                    </header>
-                    <main>
-                        <WordMeanings meanings={wordData.meanings} setWordToSearch={setWordToSearch}/>
-                    </main>
-                    <footer>
-                        <WordSource word={wordData.word} source={wordData.sourceUrls[0].toLowerCase()}/>
-                    </footer>
+                    {nonExistentWord ? <NonExistentWord /> :
+                    <>
+                        <header>
+                            <WordTitle word={wordData.word} phonetics={wordData.phonetics} />
+                        </header>
+                        <main>
+                            <WordMeanings meanings={wordData.meanings} setWordToSearch={setWordToSearch}/>
+                        </main>
+                        <footer>
+                            <WordSource word={wordData.word} source={wordData.sourceUrls[0].toLowerCase()}/>
+                        </footer>
+                    </>
+                    }
                 </>
             }
                 
