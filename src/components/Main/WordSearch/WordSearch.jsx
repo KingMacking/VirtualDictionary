@@ -1,19 +1,26 @@
 import { Icon } from "@iconify/react"
+import { useState } from "react"
 
 const WordSearch = ({setWordToSearch}) => {
-
+    const [invalidSearch, setInvalidSearch] = useState(false)
     const handleSubmit = (e) => {
         e.preventDefault()
-        setWordToSearch(e.target.word.value)
-        e.target.word.value = ""
+        if(e.target.word.value === "" || e.target.word.value.includes(" ") || /^[a-zA-Z]+$/.test(e.target.word.value) === false) {
+            setInvalidSearch(true)
+        } else {
+            setWordToSearch(e.target.word.value.toLowerCase())
+            setInvalidSearch(false)
+            e.target.word.value = ""
+        }
     }
 
     return (
-        <div className="w-full flex justify-center">
-            <form className="flex items-center w-full md:w-2/3" onSubmit={handleSubmit}>
-                <input type="text" name="word" className="dark:bg-blackDarker border border-r-0 border-grey dark:text-white rounded-l-md px-3 w-full py-2" placeholder="Enter word to search here"/>
-                <button type="submit" className="dark:bg-blackDarker border border-l-0 border-grey rounded-r-md py-2 px-3 text-blackLighter dark:text-white text-2xl"><Icon icon="material-symbols:manage-search-rounded" inline={true} /></button>
+        <div className="w-full">
+            <form className="flex items-center w-full" onSubmit={handleSubmit}>
+                <input type="text" name="word" className="w-full px-3 py-2 border border-r-0 dark:bg-blackDarker border-grey dark:text-white rounded-l-md" placeholder="Enter word to search here"/>
+                <button type="submit" className="px-3 py-2 text-2xl border border-l-0 dark:bg-blackDarker border-grey rounded-r-md text-blackLighter dark:text-white"><Icon icon="material-symbols:manage-search-rounded" inline={true} /></button>
             </form>
+            {invalidSearch && <p className="pl-2 text-sm text-vermilion">You should enter a valid word to find!</p>}
         </div>
     )
 }
