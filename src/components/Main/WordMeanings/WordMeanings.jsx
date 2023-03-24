@@ -16,14 +16,14 @@ const WordMeanings = ({meanings, setWordToSearch}) => {
                                 )
                             })}
                         </ul>
-                        {meaning.synonyms.length > 0 && <div className="text-lg text-grey">
+                        {meaning.synonyms.length > 0 && <div className="text-lg text-grey flex flex-wrap">
                             Synonyms:
                             {meaning.synonyms.map(synonym => {
                                 return <span onClick={() => setWordToSearch(synonym)} className="text-vermilion hover:cursor-pointer hover:underline underline-offset-2 mx-1">{synonym}</span>
                             })}
                             </div>
                         }
-                        {meaning.antonyms.length > 0 && <div className="text-lg text-grey">
+                        {meaning.antonyms.length > 0 && <div className="text-lg text-grey flex flex-wrap">
                             Antonyms:
                             {meaning.antonyms.map(antonym => {
                                 return <span onClick={() => setWordToSearch(antonym)} className="text-vermilion hover:cursor-pointer hover:underline underline-offset-2 mx-1">{antonym}</span>
