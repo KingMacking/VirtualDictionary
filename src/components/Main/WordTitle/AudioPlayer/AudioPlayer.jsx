@@ -11,7 +11,7 @@ const AudioPlayer = ({url}) => {
     return (
         <div>
             <audio onEnded={()=>setIsPlaying(false)} src={url} ref={audioElement}/>
-            <button className="bg-vermilion text-white rounded-full text-6xl p-2 hover:scale-105" onClick={() => setIsPlaying(!isPlaying)}><Icon icon={`${isPlaying ? "material-symbols:pause-rounded" : "material-symbols:play-arrow-rounded"}`} inline={true} /></button>
+            <button className="p-2 text-6xl text-white transition-all duration-200 ease-in-out rounded-full bg-vermilion hover:scale-110" onClick={() => setIsPlaying(!isPlaying)}><Icon icon={`${isPlaying ? "material-symbols:pause-rounded" : "material-symbols:play-arrow-rounded"}`} inline={true} /></button>
         </div>
     )
 }
