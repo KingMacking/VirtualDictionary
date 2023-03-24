@@ -10,10 +10,14 @@ module.exports = {
         colors: {
             blackLighter: "#272727",
             blackDarker: "#171717",
+            grey: "#7c7c7c",
             white: "#FCFCFC",
             vermilion: "#EF3E36",
-            verdigris: "#17BEBB",
             transparent: "transparent",
+        },
+        fontFamily: {
+            title: ["Quattrocento", "serif"],
+            text: ["Lora", "serif"],
         },
     },
     plugins: [],
