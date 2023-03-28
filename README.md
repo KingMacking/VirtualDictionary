@@ -1,4 +1,4 @@
-# [_**Virtual Dictionary**_](https://3in1pokegames.netlify.app "Live app")
+# [_**Virtual Dictionary**_](https://virtualdictionary.netlify.app "Live app")
 
 <p align='center'>
     📕¡Check the app by clicking the image!📕
